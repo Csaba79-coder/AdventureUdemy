@@ -23,13 +23,15 @@ public class DataLoader {
 
         int loc = 1;
         while(true) {
-            new MyPrinter().print(text);
             System.out.println(locations.get(loc).getDESCRIPTION());
+            new MyPrinter().print(text);
             if(loc == 0) {
                 break;
             }
 
             loc = MyScanner.getScanner().nextInt();
+
+            // this one down bellow will give exception if you don' t type from 0-5 a num!!! just gives a NullPointerException!!!
             if(!locations.containsKey(loc)) {
                 System.out.println("You cannot go in that direction");
             }
