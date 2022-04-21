@@ -27,37 +27,39 @@ public class DataLoader {
         locations.put(4, new Location(4, "You are in a valley beside a stream"));
         locations.put(5, new Location(5, "You are in the forest"));
 
+        // instead of put here all the exits, better to put it in the constructor, as it can be used anywhere in the code!
         locations.get(1).addExit("W", 2);
         locations.get(1).addExit("E", 3);
         locations.get(1).addExit("S", 4);
         locations.get(1).addExit("N", 5);
-        locations.get(1).addExit("Q", 0);
+        // locations.get(1).addExit("Q", 0);
 
         locations.get(2).addExit("N", 5);
-        locations.get(2).addExit("Q", 0);
+        // locations.get(2).addExit("Q", 0);
 
         locations.get(3).addExit("W", 1);
-        locations.get(3).addExit("Q", 0);
+        // locations.get(3).addExit("Q", 0);
 
         locations.get(4).addExit("N", 1);
         locations.get(4).addExit("W", 2);
-        locations.get(4).addExit("Q", 0);
+        // locations.get(4).addExit("Q", 0);
 
         locations.get(5).addExit("S", 1);
         locations.get(5).addExit("W", 2);
-        locations.get(5).addExit("Q", 0);
+        // locations.get(5).addExit("Q", 0);
 
 
         int loc = 1;
         while(true) {
             System.out.println(locations.get(loc).getDESCRIPTION());
-            new MyPrinter().print(newText);
+
             if (loc == 0) {
                 break;
             }
 
             Map<String, Integer> exits = locations.get(loc).getEXITS();
-            System.out.print("Available exits are ");
+            new MyPrinter().print(newText);
+            System.out.print("Available exits are: ");
             for (String exit : exits.keySet()) {
                 System.out.print(exit + ", ");
             }
