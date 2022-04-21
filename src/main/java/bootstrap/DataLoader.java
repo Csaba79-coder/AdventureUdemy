@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class DataLoader {
 
-    private Map<Integer, Location> locations = new HashMap<>();
+    Map<Integer, Location> locations = new HashMap<>();
     String text = "Choose a num between 0-5: ";
 
     public void loadTestData() {
