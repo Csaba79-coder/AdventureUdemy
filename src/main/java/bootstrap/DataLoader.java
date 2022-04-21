@@ -5,12 +5,14 @@ import util.MyPrinter;
 import util.MyScanner;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class DataLoader {
 
     Map<Integer, Location> locationsBeforeRefactor = new HashMap<>();
     Map<Integer, Location> locations = new HashMap<>();
+    String newText = "Pls. type a letter as follows:";
     String text = "Choose a num between 0-5: ";
 
     public void loadTestData() {
@@ -25,10 +27,10 @@ public class DataLoader {
         locations.put(4, new Location(4, "You are in a valley beside a stream"));
         locations.put(5, new Location(5, "You are in the forest"));
 
-        locations.get(1).addExit("N", 5);
         locations.get(1).addExit("W", 2);
         locations.get(1).addExit("E", 3);
         locations.get(1).addExit("S", 4);
+        locations.get(1).addExit("N", 5);
         locations.get(1).addExit("Q", 0);
 
         locations.get(2).addExit("N", 5);
@@ -41,22 +43,32 @@ public class DataLoader {
         locations.get(4).addExit("W", 2);
         locations.get(4).addExit("Q", 0);
 
-        locations.get(5).addExit("W", 2);
         locations.get(5).addExit("S", 1);
+        locations.get(5).addExit("W", 2);
         locations.get(5).addExit("Q", 0);
+
 
         int loc = 1;
         while(true) {
-            System.out.println(locationsBeforeRefactor.get(loc).getDESCRIPTION());
-            new MyPrinter().print(text);
+            System.out.println(locations.get(loc).getDESCRIPTION());
+            new MyPrinter().print(newText);
             if (loc == 0) {
                 break;
             }
 
-            loc = MyScanner.getScanner().nextInt();
+            Map<String, Integer> exits = locations.get(loc).getEXITS();
+            System.out.print("Available exits are ");
+            for (String exit : exits.keySet()) {
+                System.out.print(exit + ", ");
+            }
+            System.out.println();
 
+            String direction = MyScanner.getScanner().nextLine().toUpperCase(Locale.ROOT);
 
-            if (!locationsBeforeRefactor.containsKey(loc)) {
+            if (exits.containsKey(direction)) {
+                loc = exits.get(direction);
+            }
+            else {
                 System.out.println("You cannot go in that direction");
             }
         }
