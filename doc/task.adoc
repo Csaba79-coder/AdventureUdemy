@@ -1,5 +1,5 @@
 = Planning of Map
 
-== How it looks like inc. point of the compasses / quarter:
+== How it looks like inc. point of the compasses / corner / quarter:
 
 image::image-2022-04-21-10-58-45-713.png[]
